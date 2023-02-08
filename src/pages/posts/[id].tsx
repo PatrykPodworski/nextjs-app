@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 const Post = () => {
   const router = useRouter();
@@ -9,8 +10,16 @@ const Post = () => {
     return null;
   }
 
+  const imageFileName = +id % 2 == 0 ? "church" : "tree";
+
   return (
     <main>
+      <Image
+        src={`/images/${imageFileName}.jpg`}
+        alt={imageFileName}
+        width={320}
+        height={180}
+      />
       <h1>This is a post with id: {id}</h1>
       <Link href={`/posts/${+id + 1}`}>Go to the next post</Link>
       <br />
