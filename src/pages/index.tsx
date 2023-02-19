@@ -6,7 +6,7 @@ import Link from "next/link";
 const Home = () => (
   <Layout>
     <Head>
-      <title>Home with field</title>
+      <title>Home</title>
     </Head>
     <main>
       <h1>Home page</h1>
