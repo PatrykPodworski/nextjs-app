@@ -33,9 +33,7 @@ const Post = () => {
           Go to the previous post
         </Link>
         <br />
-        <Link href={`/`} as="/fake-url-to-home">
-          Back to home
-        </Link>
+        <Link href={`/`}>Back to home</Link>
       </main>
     </Layout>
   );

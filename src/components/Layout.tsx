@@ -1,8 +1,7 @@
 import Head from "next/head";
-import styles from "./layout.module.css";
 
 const Layout = ({ children }: LayoutProps) => (
-  <div className={styles.container}>
+  <div className="container mx-auto">
     <Head>
       <link rel="icon" href="/favicon.ico" />
     </Head>

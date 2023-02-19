@@ -1,19 +1,38 @@
 import Layout from "@/components/Layout";
 import Head from "next/head";
-import Image from "next/image";
 import Link from "next/link";
+import { GetStaticProps } from "next";
+import createRandomPostLinks from "./createRandomPostLinks";
+import PostLink from "./posts/models/PostLink";
 
-const Home = () => (
-  <Layout>
-    <Head>
-      <title>Home</title>
-    </Head>
-    <main>
-      <h1>Home page</h1>
-      <Image src="/images/field.jpg" alt="field" width={800} height={450} />
-      <Link href="/posts/1">Go to the first post</Link>
-    </main>
-  </Layout>
-);
+const Home = ({ posts }: HomeProps) => {
+  return (
+    <Layout>
+      <Head>
+        <title>Home page</title>
+      </Head>
+      <main>
+        <h1 className="text-4xl text mb-8">Home page</h1>
+        {posts.map((x) => (
+          <Link key={x.id} href={x.url} className="flex-col flex">
+            <h2>{x.title}</h2>
+            <p>{`${x.category} | ${x.createdAt} | ${x.readingTime} min read`}</p>
+            <p>{x.description}</p>
+          </Link>
+        ))}
+      </main>
+    </Layout>
+  );
+};
 
 export default Home;
+
+type HomeProps = {
+  posts: PostLink[];
+};
+
+export const getStaticProps: GetStaticProps<HomeProps> = () => ({
+  props: {
+    posts: createRandomPostLinks(10),
+  },
+});
