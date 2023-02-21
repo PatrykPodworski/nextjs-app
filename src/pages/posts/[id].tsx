@@ -3,40 +3,56 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import Head from "next/head";
 import Layout from "@/components/Layout";
+import { GetStaticPaths, GetStaticProps } from "next";
+import createRandomPosts from "./mock/createRandomPosts";
+import PostDetails from "./models/PostDetails";
 
-const Post = () => {
-  const router = useRouter();
-  const { id } = router.query;
-
-  if (!id || isNaN(+id)) {
-    return null;
-  }
-
-  const postTopic = +id % 2 == 0 ? "church" : "tree";
-
+const Post = ({ title, category, createdAt, content }: PostProps) => {
   return (
     <Layout>
       <Head>
-        <title>{`Post about ${postTopic}`}</title>
+        <title>{title}</title>
       </Head>
       <main>
-        <Image
-          src={`/images/${postTopic}.jpg`}
-          alt={postTopic}
-          width={320}
-          height={180}
-        />
-        <h1>This is a post with id: {id}</h1>
-        <Link href={`/posts/${+id + 1}`}>Go to the next post</Link>
-        <br />
-        <Link href={`/posts/${+id - 1 > 0 ? +id - 1 : 0}`}>
-          Go to the previous post
-        </Link>
-        <br />
+        <h1>{title}</h1>
+        <h2>{category}</h2>
+        <caption>{createdAt}</caption>
+        <article>{content}</article>
         <Link href={`/`}>Back to home</Link>
       </main>
     </Layout>
   );
+};
+
+type PostProps = Omit<PostDetails, "id">;
+
+export const getStaticPaths: GetStaticPaths = () => {
+  const paths = createRandomPosts().map((x) => ({
+    params: {
+      id: x.id,
+    },
+  }));
+
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+export const getStaticProps: GetStaticProps<PostProps> = ({ params }) => {
+  if (!params?.id) {
+    throw "Missing query parameter id";
+  }
+
+  const post = createRandomPosts().find((x) => x.id === params.id);
+
+  if (!post) {
+    throw `Post with id ${params.id} was not found`;
+  }
+
+  return {
+    props: post,
+  };
 };
 
 export default Post;

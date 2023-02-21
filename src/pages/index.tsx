@@ -2,7 +2,7 @@ import Layout from "@/components/Layout";
 import Head from "next/head";
 import Link from "next/link";
 import { GetStaticProps } from "next";
-import createRandomPostLinks from "./createRandomPostLinks";
+import createRandomPostLinks from "./posts/mock/createRandomPostLinks";
 import PostLink from "./posts/models/PostLink";
 
 const Home = ({ posts }: HomeProps) => {
@@ -33,6 +33,6 @@ type HomeProps = {
 
 export const getStaticProps: GetStaticProps<HomeProps> = () => ({
   props: {
-    posts: createRandomPostLinks(10),
+    posts: createRandomPostLinks(),
   },
 });
