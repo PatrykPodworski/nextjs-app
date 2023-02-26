@@ -1,11 +1,10 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
-import Image from "next/image";
 import Head from "next/head";
 import Layout from "@/components/Layout";
 import { GetStaticPaths, GetStaticProps } from "next";
-import createRandomPosts from "./mock/createRandomPosts";
-import PostDetails from "./models/PostDetails";
+import createRandomPosts from "../../mock/createRandomPosts";
+import Comments from "./Comments";
+import PostDetails from "@/models/posts/PostDetails";
 
 const Post = ({ title, category, createdAt, content }: PostProps) => {
   return (
@@ -18,6 +17,7 @@ const Post = ({ title, category, createdAt, content }: PostProps) => {
         <h2>{category}</h2>
         <caption>{createdAt}</caption>
         <article>{content}</article>
+        <Comments />
         <Link href={`/`}>Back to home</Link>
       </main>
     </Layout>

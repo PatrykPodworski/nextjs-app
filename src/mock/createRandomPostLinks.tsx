@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
-import { categories } from "../models/Category";
-import PostLink from "../models/PostLink";
+import PostLink from "@/models/posts/PostLink";
+import { categories } from "../models/posts/Category";
 
 const FAKER_SEED = 11;
 const NUMBER_OF_POSTS = 10;

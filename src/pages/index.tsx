@@ -2,8 +2,8 @@ import Layout from "@/components/Layout";
 import Head from "next/head";
 import Link from "next/link";
 import { GetStaticProps } from "next";
-import createRandomPostLinks from "./posts/mock/createRandomPostLinks";
-import PostLink from "./posts/models/PostLink";
+import createRandomPostLinks from "../mock/createRandomPostLinks";
+import PostLink from "@/models/posts/PostLink";
 
 const Home = ({ posts }: HomeProps) => {
   return (
