@@ -5,7 +5,7 @@ const Layout = ({ children }: LayoutProps) => (
     <Head>
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <main>{children}</main>
+    <main className="max-w-screen-md mx-8">{children}</main>
   </div>
 );
 

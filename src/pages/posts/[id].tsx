@@ -12,14 +12,14 @@ const Post = ({ title, category, createdAt, content }: PostProps) => {
       <Head>
         <title>{title}</title>
       </Head>
-      <main>
-        <h1>{title}</h1>
-        <h2>{category}</h2>
-        <caption>{createdAt}</caption>
-        <article>{content}</article>
-        <Comments />
-        <Link href={`/`}>Back to home</Link>
-      </main>
+      <h1 className="text-xl bold">{title}</h1>
+      <div className="flex gap-2 items-center">
+        <span className="text-lg italic">{category}</span>
+        <span className="text-base">{createdAt}</span>
+      </div>
+      <article className="max-w-prose my-4">{content}</article>
+      <Comments />
+      <Link href={`/`}>Back to home</Link>
     </Layout>
   );
 };
