@@ -26,12 +26,12 @@ const Comments = () => {
   return (
     <>
       {data.map((x) => (
-        <section key={x.id}>
-          <p>
+        <section key={x.id} className="my-4">
+          <p className="flex gap-2">
             <span className="font-bold">{x.author}</span>
             <span className="italic">{x.createdAt.toLocaleDateString()}</span>
           </p>
-          <p>{x.content}</p>
+          <p className="max-w-prose">{x.content}</p>
         </section>
       ))}
     </>
